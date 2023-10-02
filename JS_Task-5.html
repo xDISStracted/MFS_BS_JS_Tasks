@@ -1,91 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Task-5</title>
-  </head>
-  <body>
-    <div
-      class="container"
-      style="display: flex; justify-content: center; padding-top: 80px"
-    >
-      <form
-        style="
-          display: flex;
-          flex-direction: column;
-          width: 500px;
-          gap: 20px;
-          justify-content: center;
-          align-items: baseline;
-        "
-        novalidate
-      >
-        <div class="in-grp" style="display: flex; gap: 6px">
-          <label for="name">Name:</label>
-          <input type="text" id="name" />
-          <p id="pname"></p>
+</head>
+
+<body>
+    <center>
+        <div>
+            <table border="0" cellspacing="10">
+                <tr>
+                    <td style="float:right;">
+                        Name:
+                    </td>
+                    <td>
+                        <input type="text" id="name" >
+                        <span class="name-invalid" style="margin-left: 20px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="float:right;">
+                        Email:
+                    </td>
+                    <td>
+                        <input type="email" id="email" >
+                        <span class="email-invalid" style="margin-left: 20px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="float:right;">
+                        Website:
+                    </td>
+                    <td>
+                        <input type="text" id="website" >
+                        <span class="url-invalid" style="margin-left: 20px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="float:right;">
+                        Message:
+                    </td>
+                    <td>
+                        <textarea name="message" id="message" cols="25" rows="5" ></textarea>
+                        <span class="message-invalid" style="margin-left: 20px; position:relative; top:-70px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div class="in-grp" style="display: flex; gap: 6px">
-          <label for="email">Email:</label>
-          <input type="email" id="email" />
-          <p id="pmail"></p>
-        </div>
-        <div class="in-grp" style="display: flex; gap: 6px">
-          <label for="website">Website:</label>
-          <input type="url" id="website" />
-          <p id="psite"></p>
-        </div>
-        <div class="in-grp" style="display: flex; gap: 6px">
-          <label for="msg">Message:</label>
-          <textarea id="msg"></textarea>
-          <p id="pmsg"></p>
-        </div>
-        <input type="button" value="Submit" onclick="validate()" />
-      </form>
-    </div>
+    </center>
 
     <script>
-      let form = document.querySelector("form");
-      let name = document.getElementById("name");
-      let email = document.getElementById("email");
-      let website = document.getElementById("website");
-      let msg = document.getElementById("msg");
-
-      let validate = () => {
-        if (name.value == "") {
-          document.getElementById("pname").innerHTML = "This field is required";
-          document.getElementById("pname").style.color = "red";
-          name.style.border = "1px solid red";
+      document.querySelector("button").addEventListener("click", function () {
+        var flag=0;
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    
+        if(document.querySelector("#name").value==""){
+            flag=1;
+            document.querySelector("#name").style.borderColor = "red";
+            document.querySelector("#name").style.borderWidth = "3px";
+            document.querySelector(".name-invalid").innerHTML = "This field is required";
+            document.querySelector(".name-invalid").style.color = "red";
         }
-        if (email.value == "") {
-          document.getElementById("pmail").innerHTML =
-            "A valid email address is required";
-          document.getElementById("pmail").style.color = "red";
-          email.style.border = "1px solid red";
+    
+        if(!document.querySelector("#email").value.match(validRegex)) {
+            flag=1;
+            document.querySelector("#email").style.borderColor = "red";
+            document.querySelector("#email").style.borderWidth = "3px";
+            document.querySelector(".email-invalid").innerHTML = "A valid email address is required";
+            document.querySelector(".email-invalid").style.color = "red";
         }
-        if (website.value == "") {
-          document.getElementById("psite").innerHTML =
-            "A valid url is required";
-          document.getElementById("psite").style.color = "red";
-          website.style.border = "1px solid red";
+    
+        const isValidUrl = urlString =>{
+            var inputElement = document.createElement('input');
+            inputElement.type = 'url';
+            inputElement.value = urlString;
+      
+            if (!inputElement.checkValidity()) {
+              return false;
+            } 
+            else {
+              return true;
+            }
+    
+        } 
+        if(document.querySelector("#website").value==""){
+            flag=1;
+            document.querySelector("#website").style.borderColor = "red";
+            document.querySelector("#website").style.borderWidth = "3px";
+            document.querySelector(".url-invalid").innerHTML = "This field is required";
+            document.querySelector(".url-invalid").style.color = "red";
         }
-        if (msg.value == "") {
-          document.getElementById("pmsg").innerHTML = "This field is required";
-          document.getElementById("pmsg").style.color = "red";
-          msg.style.border = "1px solid red";
-        } else {
-          document.getElementById("pname").innerHTML = "";
-          document.getElementById("pmail").innerHTML = "";
-          document.getElementById("psite").innerHTML = "";
-          document.getElementById("pmsg").innerHTML = "";
-          name.style.border = "1px solid black";
-          email.style.border = "1px solid black";
-          website.style.border = "1px solid black";
-          msg.style.border = "1px solid black";
+        else if(!isValidUrl(document.querySelector("#website").value)){
+            flag=1;
+            document.querySelector("#website").style.borderColor = "red";
+            document.querySelector("#website").style.borderWidth = "3px";
+            document.querySelector(".url-invalid").innerHTML = "A valid url is required";
+            document.querySelector(".url-invalid").style.color = "red";
         }
-      };
+    
+        if(document.querySelector("#message").value==""){
+            flag=1;
+            document.querySelector("#message").style.borderColor = "red";
+            document.querySelector("#message").style.borderWidth = "3px";
+            document.querySelector(".message-invalid").innerHTML = "This field is required";
+            document.querySelector(".message-invalid").style.color = "red";
+        }
+    
+        if(flag==0){
+            window.location.href = document.querySelector("#website").value;
+        }
+        
+    });
     </script>
-  </body>
+
+</body>
 </html>
