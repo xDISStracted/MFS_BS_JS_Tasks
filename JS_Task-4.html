@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Task-4</title>
+  </head>
+  <body>
+    <button id="date">Show Date</button>
+    <p id="datep"></p>
+    <button id="time">Show Time</button>
+    <p id="datet"></p>
+    <script>
+      let date = new Date();
+      document.getElementById("date").onclick = function () {
+        month = date.getMonth();
+        document.getElementById("datep").innerHTML =
+          date.getDate() +
+          "/" +
+          date.toLocaleString("default", { month: "long" }) +
+          "/" +
+          date.getFullYear();
+      };
+
+      document.getElementById("time").onclick = function () {
+        document.getElementById("datet").innerHTML = date;
+      };
+    </script>
+  </body>
+</html>

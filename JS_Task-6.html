@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Task-6</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/776e35db5c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container" style="width: max-content">
+      <form
+        class="d-flex flex-column border border-1 gap-3 pt-3 pb-4 ps-5 pe-5 mt-5 justify-content-center"
+        style="
+          height: 350px;
+          background-color: rgb(246, 246, 246);
+          box-shadow: 0px 3px 5px rgb(187, 186, 186);
+        "
+      >
+        <div class="title d-flex justify-content-center mb-2" style="font-size: 2.5em; font-family: 'Times New Roman', Times, serif;"><I>Instagram</I></div>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            id="uname"
+          />
+        </div>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            id="pwd"
+          />
+        </div>
+        <button class="btn btn-primary text-light" onclick="validate()">
+          Log in
+        </button>
+        <div class="input-group d-flex gap-5">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              value="Remember me"
+              id="remcheck"
+            />
+            <label for="remcheck" class="form-check-label">Remember me</label>
+          </div>
+          <a href="#" class="text-decoration-none">Forgot Password?</a>
+        </div>
+      </form>
+      <p class="text-center pt-4">
+        Don't have an account! <a href="#" class="text-decoration-none">Sign up here.</a>
+      </p>
+    </div>
+
+    <script>
+      let form = document.querySelector("form");
+      let uname = document.getElementById("uname");
+      let pwd = document.getElementById("pwd");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+
+      function validate() {
+        if (uname.value == "" || pwd.value == "") {
+          alert("Invalid inputs");
+          return;
+        }
+        alert("Login successful");
+      }
+    </script>
+  </body>
+</html>

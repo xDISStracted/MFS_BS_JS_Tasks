@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Task-5</title>
+  </head>
+  <body>
+    <div
+      class="container"
+      style="display: flex; justify-content: center; padding-top: 80px"
+    >
+      <form
+        style="
+          display: flex;
+          flex-direction: column;
+          width: 500px;
+          gap: 20px;
+          justify-content: center;
+          align-items: baseline;
+        "
+        novalidate
+      >
+        <div class="in-grp" style="display: flex; gap: 6px">
+          <label for="name">Name:</label>
+          <input type="text" id="name" />
+          <p id="pname"></p>
+        </div>
+        <div class="in-grp" style="display: flex; gap: 6px">
+          <label for="email">Email:</label>
+          <input type="email" id="email" />
+          <p id="pmail"></p>
+        </div>
+        <div class="in-grp" style="display: flex; gap: 6px">
+          <label for="website">Website:</label>
+          <input type="url" id="website" />
+          <p id="psite"></p>
+        </div>
+        <div class="in-grp" style="display: flex; gap: 6px">
+          <label for="msg">Message:</label>
+          <textarea id="msg"></textarea>
+          <p id="pmsg"></p>
+        </div>
+        <input type="button" value="Submit" onclick="validate()" />
+      </form>
+    </div>
+
+    <script>
+      let form = document.querySelector("form");
+      let name = document.getElementById("name");
+      let email = document.getElementById("email");
+      let website = document.getElementById("website");
+      let msg = document.getElementById("msg");
+
+      let validate = () => {
+        if (name.value == "") {
+          document.getElementById("pname").innerHTML = "This field is required";
+          document.getElementById("pname").style.color = "red";
+          name.style.border = "1px solid red";
+        }
+        if (email.value == "") {
+          document.getElementById("pmail").innerHTML =
+            "A valid email address is required";
+          document.getElementById("pmail").style.color = "red";
+          email.style.border = "1px solid red";
+        }
+        if (website.value == "") {
+          document.getElementById("psite").innerHTML =
+            "A valid url is required";
+          document.getElementById("psite").style.color = "red";
+          website.style.border = "1px solid red";
+        }
+        if (msg.value == "") {
+          document.getElementById("pmsg").innerHTML = "This field is required";
+          document.getElementById("pmsg").style.color = "red";
+          msg.style.border = "1px solid red";
+        } else {
+          document.getElementById("pname").innerHTML = "";
+          document.getElementById("pmail").innerHTML = "";
+          document.getElementById("psite").innerHTML = "";
+          document.getElementById("pmsg").innerHTML = "";
+          name.style.border = "1px solid black";
+          email.style.border = "1px solid black";
+          website.style.border = "1px solid black";
+          msg.style.border = "1px solid black";
+        }
+      };
+    </script>
+  </body>
+</html>
